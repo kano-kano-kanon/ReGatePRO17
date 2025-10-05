@@ -1,0 +1,569 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f8f9fa;
+    overflow: hidden;
+}
+/* リボンUIスタイル */
+        .ribbon-container {
+            background: #fff;
+            border-bottom: 1px solid #d0d0d0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .ribbon-tabs {
+            display: flex;
+            background: linear-gradient(to bottom, #f0f0f0, #e0e0e0);
+            border-bottom: 1px solid #c0c0c0;
+        }
+        
+        .ribbon-tab {
+            padding: 8px 16px;
+            background: #e8e8e8;
+            border: 1px solid #c0c0c0;
+            border-bottom: none;
+            margin-right: 2px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: background 0.2s;
+        }
+        
+        .ribbon-tab:hover {
+            background: #f0f0f0;
+        }
+        
+        .ribbon-tab.active {
+            background: #fff;
+            border-bottom: 1px solid #fff;
+            z-index: 1;
+        }
+        
+        .ribbon-content {
+            background: #fff;
+            padding: 8px;
+            min-height: 80px;
+            display: none;
+        }
+        
+        .ribbon-content.active {
+            display: block;
+        }
+        
+        .ribbon-group {
+            display: inline-block;
+            vertical-align: top;
+            margin-right: 20px;
+            padding: 5px;
+            border-right: 1px solid #e0e0e0;
+        }
+        
+        .ribbon-group-title {
+            font-size: 10px;
+            color: #666;
+            text-align: center;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        
+        .ribbon-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 3px;
+            max-width: 150px;
+        }
+        
+        .ribbon-button {
+            padding: 4px 8px;
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 10px;
+            transition: all 0.2s;
+            min-width: 45px;
+            text-align: center;
+        }
+        
+        .ribbon-button:hover {
+            background: #e9ecef;
+            border-color: #adb5bd;
+        }
+        
+        .ribbon-button.active {
+            background: #007bff;
+            color: white;
+            border-color: #0056b3;
+        }
+        
+        .ribbon-large-button {
+            padding: 8px 16px;
+            background: #17a2b8;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+            margin: 2px;
+            transition: background 0.2s;
+        }
+        
+        .ribbon-large-button:hover {
+            background: #138496;
+        }
+        
+        .ribbon-large-button.danger {
+            background: #dc3545;
+        }
+        
+        .ribbon-large-button.danger:hover {
+            background: #c82333;
+        }
+
+@keyframes slideIn {
+    from {
+        transform: scale(0.8) translateY(-30px);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+    }
+}
+        
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+    }
+
+        div[style*="overflow-y: auto"]::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        div[style*="overflow-y: auto"]::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
+        
+        div[style*="overflow-y: auto"]::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 4px;
+        }
+        
+        div[style*="overflow-y: auto"]::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, #5a67d8, #6b46c1);
+        }
+        
+        .main-container {
+            display: flex;
+            height: 100vh;
+        }
+        
+        .sidebar {
+            width: 150px;
+            background: #343a40;
+            color: white;
+            padding: 4px;
+            overflow-y: auto;
+            font-size: 8px;
+        }
+        
+        .sidebar h3 {
+            margin: 6px 0 4px 0;
+            color: #ffc107;
+            border-bottom: 1px solid #495057;
+            padding-bottom: 5px;
+            font-size: 10px;
+        }
+        
+        .gate-category {
+            margin-bottom: 13px;
+        }
+        
+        .gate-button {
+            display: block;
+            width: 100%;
+            margin: 3px 0;
+            padding: 4px 6px;
+            background: #6c757d;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 8px;
+            text-align: left;
+            line-height: 1.3;
+        }
+        
+        .gate-button:hover {
+            background: #5a6268;
+        }
+        
+        .gate-button.active {
+            background: #007bff;
+        }
+        
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .toolbar {
+            background: #ffffff;
+            border-bottom: 1px solid #dee2e6;
+            padding: 12px;
+            display: flex !important;
+            gap: 8px;
+            align-items: center;
+            min-height: 50px;
+            visibility: visible !important;
+            opacity: 1 !important;
+        }
+        
+        .toolbar button {
+            padding: 4px 6px;
+            background: #17a2b8;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 8px;
+        }
+        
+        .toolbar button:hover {
+            background: #138496;
+        }
+        
+        .toolbar button.danger {
+            background: #dc3545;
+        }
+        
+        .toolbar button.danger:hover {
+            background: #c82333;
+        }
+
+        /* スクロール可能なキャンバス */
+        .canvas-container {
+            flex: 1;
+            position: relative;
+            overflow: auto;
+            background: #f5f5f5;
+        }
+        
+        #canvas {
+            
+            height: 3000px;
+            background: white;
+            position: relative;
+            overflow: hidden;
+            position: relative;
+            background-image: 
+                linear-gradient(to right, #e9ecef 1px, transparent 1px),
+                linear-gradient(to bottom, #e9ecef 1px, transparent 1px),
+                radial-gradient(circle, #d0d0d0 1px, transparent 1px);
+            background-size: 40px 40px, 40px 40px, 20px 20px;
+            cursor: grab;
+        }
+        
+        #canvas.dragging {
+            cursor: grabbing;
+        }
+        
+        
+
+        .gate {
+            position: absolute;
+            width: 80px;
+            height: 50px;
+            background: white;
+            border: 2px solid #6c757d;
+            border-radius: 6px;
+            cursor: move;
+            user-select: none;
+            font-weight: bold;
+            font-size: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            transition: all 0.2s ease;
+        }
+        
+        .gate.selected {
+            border-color: #007bff;
+            box-shadow: 0 0 10px rgba(0,123,255,0.5);
+        }
+        
+        .gate.active {
+            background: #28a745 !important;
+            color: white;
+        }
+        
+        
+        /* 統合された軽量化色分け */
+        .gate.input, .gate.push_button, .gate.toggle_button, .gate.dc { background: #fff3cd; border-color: #ffc107; }
+        .gate.output, .gate.not, .gate.led { background: #f8d7da; border-color: #dc3545; }
+        .gate.buffer, .gate.buffer8 { background: #e2e3e5; border-color: #6c757d; }
+        .gate.and, .gate.bit4_adder, .gate.register { background: #d4edda; border-color: #28a745; }
+        .gate.or, .gate.decoder { background: #cce5ff; border-color: #007bff; }
+        .gate.nand, .gate.comparator { background: #d1ecf1; border-color: #17a2b8; }
+        .gate.nor, .gate.counter { background: #e7e0f7; border-color: #6f42c1; }
+        .gate.xor { background: #fff2cc; border-color: #fd7e14; }
+        .gate.xnor { background: #ffe6cc; border-color: #fd7e14; }
+        .gate.mux, .gate.latch { background: #f0e6ff; border-color: #6f42c1; }
+        .gate.encoder { background: #ffe6f3; border-color: #cc0066; }
+        .gate.adder { background: #f3ffe6; border-color: #66cc00; }
+        .gate.flipflop { background: #fff0e6; border-color: #ff6600; }
+        .gate.multi_input { background: #e1f5fe; border-color: #0277bd; }
+        .gate.complement { background: #fce4ec; border-color: #c2185b; }
+        .gate.seg7, .gate.bit4_7seg { background: #fff3e0; border-color: #f57c00; }
+        .gate.alu, .gate.analog_mux { background: #e3f2fd; border-color: #1976d2; }
+        .gate.divider, .gate.multiplier { background: #fce4ec; border-color: #c2185b; }
+        .gate.memory4, .gate.oscillator { background: #fffde7; border-color: #fbc02d; }
+        .gate.memory8 { background: #e0f7fa; border-color: #00838f; }
+        .gate.diode { background: #f9fbe7; border-color: #afb42b; }
+        .gate.shiftreg { background: #fff3e0; border-color: #f57c00; }
+        .gate.analog_switch { background: #f1f8e9; border-color: #689f38; }
+        .gate.pll { background: #e0f7fa; border-color: #00838f; }
+        .gate.transistor { background: #f8bbd0; border-color: #d81b60; }
+        .gate.custom { background: #f5f5f5; border-color: #9e9e9e; border-width: 3px; border-style: dashed; }
+        
+        .pin {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: #333;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 20;
+        }
+        
+        .pin-label {
+            position: absolute;
+            font-size: 8px;
+            font-weight: bold;
+            color: #333;
+            
+            padding: 1px 2px;
+            pointer-events: none;
+            z-index: 21;
+        }
+        
+        .pin-label.input-label {
+            right: 70px;
+            transform: translateY(-50%);
+        }
+        
+        .pin-label.output-label {
+            left: 70px;
+            transform: translateY(-50%);
+        }
+        
+        .pin.input-pin {
+            left: -4px;
+            background: #f44336;
+            pointer-events: auto;
+            z-index: 1000;
+        }
+        
+        .pin.output-pin {
+            right: -4px;
+            background: #2196f3;
+            pointer-events: auto;
+            z-index: 1000;
+        }
+        
+        .pin:hover {
+            transform: scale(1.3);
+            box-shadow: 0 0 5px rgba(255, 255, 0, 0.8);
+        }
+        
+        .pin.highlight {
+            transform: scale(1.3);
+            box-shadow: 0 0 8px rgba(255, 255, 0, 1);
+            border: 2px solid #ffff00 !important;
+        }
+        
+        .wire {
+            position: absolute;
+            height: 2px;
+            background: #333;
+            transform-origin: left center;
+            pointer-events: auto;
+            cursor: pointer;
+            z-index: 1000;
+        }
+        
+        .wire:hover {
+            height: 4px;
+            background: #ff5722;
+        }
+        
+        .wire.active {
+            background: #28a745;
+            height: 3px;
+        }
+        
+        .wire.active:hover {
+            background: #ff5722;
+            height: 4px;
+        }
+        
+        .status-bar {
+            background: #f8f9fa;
+            border-top: 1px solid #dee2e6;
+            padding: 8px 15px;
+            font-size: 12px;
+            color: #495057;
+        }
+        
+        .minimap {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            width: 200px;
+            height: 150px;
+            background: rgba(255,255,255,0.9);
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            z-index: 1000;
+            overflow: hidden;
+        }
+        
+        .minimap canvas {
+            width: 100%;
+            height: 100%;
+        }
+        
+        /* モバイル対応 */
+        @media (max-width: 768px) {
+            .main-container {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+                height: auto;
+                max-height: 200px;
+                overflow-y: auto;
+                border-bottom: 1px solid #495057;
+                position: relative;
+            }
+            
+            .sidebar.collapsed {
+                max-height: 40px;
+                overflow: hidden;
+            }
+            
+            .sidebar-toggle {
+                display: block;
+                width: 100%;
+                padding: 8px;
+                background: #495057;
+                color: white;
+                border: none;
+                font-size: 14px;
+                cursor: pointer;
+                text-align: center;
+            }
+            
+            .gate-category {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 2px;
+                margin-bottom: 8px;
+            }
+            
+            .gate-button {
+                flex: 1;
+                min-width: 60px;
+                padding: 6px 4px;
+                font-size: 10px;
+                margin: 1px;
+                text-align: center;
+            }
+            
+            .toolbar {
+                flex-wrap: wrap;
+                padding: 8px;
+                gap: 5px;
+            }
+            
+            .toolbar button {
+                padding: 8px 12px;
+                font-size: 11px;
+                min-width: 70px;
+            }
+            
+            .gate {
+                width: 70px;
+                height: 45px;
+                font-size: 8px;
+            }
+            
+            .pin {
+                width: 6px;
+                height: 6px;
+            }
+            
+            #canvas {
+                touch-action: none;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .sidebar {
+                max-height: 150px;
+            }
+            
+            .toolbar button {
+                padding: 6px 8px;
+                font-size: 10px;
+                min-width: 60px;
+            }
+            
+            .gate {
+                width: 60px;
+                height: 40px;
+                font-size: 7px;
+            }
+            
+            .pin {
+                width: 5px;
+                height: 5px;
+            }
+            
+            .gate-button {
+                font-size: 9px;
+                padding: 4px 2px;
+            }
+        }
+        
+        /* タッチデバイス対応 */
+        .gate {
+            touch-action: manipulation;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        
+        .pin {
+            touch-action: manipulation;
+        }
+        
+        .wire {
+            touch-action: manipulation;
+        }
+        
+        .gate-button, .toolbar button {
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        /* サイドバートグルボタン */
+        .sidebar-toggle {
+            display: none;
+        }

@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>re_gate Pro17</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/x-icon" href="favicon/favicon.ico">
+</head>
+<body>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="import" href="vhdl/reject.vhd">
+    <div class="main-container">
+        <div class="sidebar" id="sidebar">
+            <button class="sidebar-toggle" onclick="toggleSidebar()">
+                ゲート選択
+            </button>
+            <div class="sidebar-content">
+
+            <h3>入出力</h3>
+            <div class="gate-category">
+                <button class="gate-button" onclick="setMode('INPUT')">INPUT</button>
+                <button class="gate-button" onclick="setMode('OUTPUT')">OUTPUT</button>
+                <button class="gate-button" onclick="setMode('PUSH_BUTTON')">押しボタン</button>
+                <button class="gate-button" onclick="setMode('TOGGLE_BUTTON')">トグル</button>
+                <button class="gate-button" onclick="setMode('KEY_INPUT')">キー入力</button>
+                <button class="gate-button" onclick="setMode('TIMER_PULSE')">タイマー</button>
+                <button class="gate-button" onclick="setMode('TOGGLE_INPUT')">トグル入力</button>
+                <button class="gate-button" onclick="setMode('COUNTER_GATE')">カウンタ</button>
+                <button class="gate-button" onclick="setMode('LOG_OUTPUT')">ログ出力</button>
+            </div>
+                
+            <h3>論理ゲート</h3>
+            <div class="gate-category">
+                <button class="gate-button" onclick="setMode('BUFFER')">BUFFER</button>
+                <button class="gate-button" onclick="setMode('BUFFER8')">BUF8</button>
+                <button class="gate-button" onclick="setMode('NOT')">NOT</button>
+                <button class="gate-button" onclick="setMode('AND')">AND</button>
+                <button class="gate-button" onclick="setMode('OR')">OR</button>
+                <button class="gate-button" onclick="setMode('NAND')">NAND</button>
+                <button class="gate-button" onclick="setMode('NOR')">NOR</button>
+                <button class="gate-button" onclick="setMode('XOR')">XOR</button>
+                <button class="gate-button" onclick="setMode('XNOR')">XNOR</button>
+            </div>
+            
+            <h3>アドバンス</h3>
+            <div class="gate-category">
+                <button class="gate-button" onclick="setMode('MUX')">MUX</button>
+                <button class="gate-button" onclick="setMode('DEMUX')">DEMUX</button>
+                <button class="gate-button" onclick="setMode('ENCODER')">ENCODER</button>
+                <button class="gate-button" onclick="setMode('DECODER')">DECODER</button>
+                <button class="gate-button" onclick="setMode('MAJORITY')">MAJORITY</button>
+                <button class="gate-button" onclick="setMode('PARITY')">PARITY</button>
+		<button class="gate-button" onclick="setMode('ANALOG_SWITCH')">A-SW</button>
+                <button class="gate-button" onclick="setMode('ANALOG_MUX')">A-MUX</button>
+            </div>
+            
+            <h3>演算器</h3>
+            <div class="gate-category">
+                <button class="gate-button" onclick="setMode('HALF_ADDER')">HA</button>
+                <button class="gate-button" onclick="setMode('FULL_ADDER')">FA</button>
+                <button class="gate-button" onclick="setMode('BIT4_ADDER')">4BIT ADD</button>
+                <button class="gate-button" onclick="setMode('COMPLEMENT')">補数器</button>
+                <button class="gate-button" onclick="setMode('DIVIDER4')">4bit除算</button>
+                <button class="gate-button" onclick="setMode('MULTIPLIER4')">4bit乗算</button>
+                <button class="gate-button" onclick="setMode('ALU_181')">74HC181 ALU</button>
+            </div>
+            
+            <h3>表示デバイス</h3>
+            <div class="gate-category">
+                <button class="gate-button" onclick="setMode('SEG7')">7SEG</button>
+                <button class="gate-button" onclick="setMode('BIT4_7SEG')">4BIT-7SEG</button>
+            </div>
+            
+            <h3>FF・ラッチ</h3>
+            <div class="gate-category">
+                <button class="gate-button" onclick="setMode('D_FF')">D-FF</button>
+                <button class="gate-button" onclick="setMode('T_FF')">T-FF</button>
+                <button class="gate-button" onclick="setMode('JK_FF')">JK-FF</button>
+                <button class="gate-button" onclick="setMode('RS_FF')">RS-FF</button>
+                <button class="gate-button" onclick="setMode('LATCH_SR')">SRラッチ</button>
+                <button class="gate-button" onclick="setMode('LATCH_D')">Dラッチ</button>
+                <button class="gate-button" onclick="setMode('LATCH_T')">Tラッチ</button>
+                <button class="gate-button" onclick="setMode('LATCH_JK')">JKラッチ</button>
+                <button class="gate-button" onclick="setMode('COUNTER')">カウンタ</button>
+            </div>
+            
+            <h3>メモリ・レジスタ</h3>
+            <div class="gate-category">
+                <button class="gate-button" onclick="setMode('BIT_MEMORY')">1bitメモリ</button>
+                <button class="gate-button" onclick="setMode('MEMORY4')">4bitメモリ</button>
+                <button class="gate-button" onclick="setMode('MEMORY8')">8bitメモリ</button>
+                <button class="gate-button" onclick="setMode('REGISTER')">レジスタ</button>
+                <button class="gate-button" onclick="setMode('SHIFTREG')">シフトレジスタ</button>
+            </div>
+            
+            <h3>アナログ・デジタル混合部品一覧</h3>
+            <div class="gate-category">
+                <button class="gate-button" onclick="setMode('DC')">DC</button>
+                <button class="gate-button" onclick="setMode('RESISTOR')">抵抗</button>
+                <button class="gate-button" onclick="setMode('OSCILLATOR')">発振器</button>
+                <button class="gate-button" onclick="setMode('DELAY')">遅延</button>
+                <button class="gate-button" onclick="setMode('TRANSISTOR')">トランジスタ</button>
+                <button class="gate-button" onclick="setMode('DIODE')">ダイオード</button>
+                <button class="gate-button" onclick="setMode('COMPARATOR')">コンパレータ</button>
+                <button class="gate-button" onclick="setMode('LED')">LED</button>
+                <button class="gate-button" onclick="setMode('PLL')">PLL</button>
+                <button class="gate-button" onclick="setMode('電流計')">電流計</button>
+                <button class="gate-button" onclick="setMode('電圧計')">電圧計</button>
+                <button class="gate-button" onclick="setMode('電流元')">電流元</button>
+                <button class="gate-button" onclick="setMode('AC電源')">AC電源</button>
+                <button class="gate-button" onclick="setMode('赤外線送受信')">赤外線送受信</button>
+                <button class="gate-button" onclick="setMode('2pinモータ')">DCモータ</button>
+                <button class="gate-button" onclick="setMode('3pin（ICS通信サーボ）')">ICSサーボ</button>
+                <button class="gate-button" onclick="setMode('ステッピングモータ')">ステッピングモータ</button>
+                <button class="gate-button" onclick="setMode('microMotor')">microMotor</button>
+                <button class="gate-button" onclick="setMode('ヒューズ')">ヒューズ</button>
+                <button class="gate-button" onclick="setMode('RGB')">RGB</button>
+                <button class="gate-button" onclick="setMode('可変抵抗')">可変抵抗</button>
+                <button class="gate-button" onclick="setMode('AMアンテナ')">AMアンテナ</button>
+                <button class="gate-button" onclick="setMode('FMアンテナ')">FMアンテナ</button>
+                <button class="gate-button" onclick="setMode('ダイヤルスイッチ')">ダイヤルスイッチ</button>
+                <button class="gate-button" onclick="setMode('ZHコネクタ')">ZHコネクタ</button>
+                <button class="gate-button" onclick="setMode('モジュラージャック')">モジュラージャック</button>
+                <button class="gate-button" onclick="setMode('microB変換')">microB変換</button>
+                <button class="gate-button" onclick="setMode('Li-Poバッテリー')">Li-Poバッテリー</button>
+                <button class="gate-button" onclick="setMode('Li-Feバッテリー')">Li-Feバッテリー</button>
+                <button class="gate-button" onclick="setMode('Li-ionバッテリー')">Li-ionバッテリー</button>
+                <button class="gate-button" onclick="setMode('マイク')">マイク</button>
+                <button class="gate-button" onclick="setMode('スピーカ')">スピーカ</button>
+                <button class="gate-button" onclick="setMode('ディスプレイ')">ディスプレイ</button>
+            </div>
+            <h3>カスタムゲート</h3>
+            <div class="gate-category">
+                <button class="gate-button" onclick="createCustomGate()">🔧 新規作成</button>
+                <div id="customGatesList"></div>
+            </div>
+    </section>
+            </div>
+        </div>
+        <div class="main-content">
+            <div class="toolbar">
+                <button onclick="setMode('SELECT')">選択</button>
+                <button onclick="setMode('WIRE')">🔗配線</button>
+                <button onclick="simulate()">▶️一括実行</button>
+                	   <button onclick="stepSimulate()">⏭️段階実行</button>
+                <button onclick="resetSimulation()">🔄リセット</button>
+                <button onclick="autoLayout()">自動配置</button>
+                <span>|</span>
+                <button onclick="deleteSelected()">🗑️選択削除</button>
+                <button onclick="saveCircuit()">💾</button>
+                <button onclick="loadCircuit()">📁</button>
+                <button onclick="exportImage()">📷</button>
+                <button onclick="exportVerilogHDL()" style="background: #4CAF50; color: white;">Verilog</button>
+                <button onclick="exportVHDLHDL()" style="background: #2196F3; color: white;">VHDL</button>
+                <button onclick="togglePhysicsEngine()" id="physics-btn" style="background: #FF9800; color: white;">物理</button>
+                <button onclick="createCustomGate()">新規ゲート</button>
+                <span>|</span>
+                <button onclick="showAIAssistant()" style="margin: 1px; padding: 3px 6px; background: #9c27b0; color: white; border: none; border-radius: 3px; cursor: pointer; font-size: 10px;">AI支援</button>
+                <button onclick="showSmartDesign()" style="margin: 1px; padding: 3px 6px; background: #ff5722; color: white; border: none; border-radius: 3px; cursor: pointer; font-size: 10px;">スマート設計</button>
+                <button onclick="showCircuitAnalyzer()" style="margin: 1px; padding: 3px 6px; background: #795548; color: white; border: none; border-radius: 3px; cursor: pointer; font-size: 10px;">回路解析</button>
+                <button onclick="showSmartGateWizard()" style="margin: 1px; padding: 3px 6px; background: #607d8b; color: white; border: none; border-radius: 3px; cursor: pointer; font-size: 10px;">ゲート作成</button>
+                <span>|</span>
+                <!-- Pro12 Project Management -->
+                
+                    <button onclick="showProjectManager()" style="margin: 1px; padding: 3px 6px; background: #007acc; color: white; border: none; border-radius: 3px; cursor: pointer; font-size: 10px;">プロジェクト</button>
+                    <button onclick="createSnapshot()" style="margin: 1px; padding: 3px 6px; background: #28a745; color: white; border: none; border-radius: 3px; cursor: pointer; font-size: 10px;">スナップ</button>
+                    <button onclick="showVersionHistory()" style="margin: 1px; padding: 3px 6px; background: #17a2b8; color: white; border: none; border-radius: 3px; cursor: pointer; font-size: 10px;">履歴</button>
+                    <div id="current-project-info" style="font-size: 9px; color: #666; margin-left: 8px; line-height: 1.2;">
+                        <div><strong>Project:</strong> <span id="current-project-name">None</span></div>
+                        <div><strong>Version:</strong> <span id="current-version">-</span></div>
+                    </div>
+
+                    <button onclick="showTestMenu()" style="margin: 1px; padding: 3px 10px; background: #dc3545; color: white; border: none; border-radius: 3px; cursor: pointer; font-size: 10px;">テスト</button>
+                
+                <!-- プリセット選択 -->
+                    <select id="presetSelector" onchange="switchPreset(this.value)" style="
+                        background: linear-gradient(135deg, #f8f9fa, #e9ecef); 
+                        border: 1px solid #ced4da; border-radius: 4px; 
+                        padding: 4px 8px; font-size: 11px; font-weight: 600;
+                        cursor: pointer; color: #495057;
+                    ">
+                        <option value="ideal">理想値</option>
+                        <option value="standard">業界標準</option>
+                        <option value="custom">カスタム</option>
+                    </select>
+                <button class="danger" onclick="clearAll()">⛔全削除</button>
+            </div>
+            <div class="canvas-container" id="canvas-container">
+                <div id="canvas"></div>
+            </div>
+            
+            <!-- Pro14物理詳細パネル -->
+            <div id="physics-details-panel" style="
+                position: fixed; 
+                top: 80px; 
+                right: 10px; 
+                width: 320px; 
+                background: rgba(0, 0, 0, 0.9); 
+                color: white; 
+                padding: 15px; 
+                border-radius: 8px; 
+                font-family: 'Courier New', monospace; 
+                font-size: 11px; 
+                display: none; 
+                z-index: 1000;
+                max-height: 70vh;
+                overflow-y: auto;
+                border: 2px solid #4CAF50;
+            ">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                    <h3 style="margin: 0; color: #4CAF50;">物理シミュレーション詳細</h3>
+                    <button onclick="hidePhysicsDetails()" style="background: #f44336; color: white; border: none; border-radius: 3px; padding: 2px 6px; cursor: pointer;">×</button>
+                </div>
+                
+                <div id="physics-status" style="margin-bottom: 15px; padding: 8px; background: rgba(76, 175, 80, 0.2); border-radius: 4px;">
+                    <div><strong>状態:</strong> <span id="physics-engine-status">実行中</span></div>
+                    <div><strong>FPS:</strong> <span id="physics-fps">0</span></div>
+                    <div><strong>総ゲート数:</strong> <span id="total-gates">0</span></div>
+                </div>
+                
+                <div id="global-physics" style="margin-bottom: 15px;">
+                    <h4 style="color: #FFC107; margin: 0 0 8px 0;">環境パラメータ</h4>
+                    <div>温度: <span id="global-temp">25.0°C</span></div>
+                    <div>電圧: <span id="global-voltage">5.0V</span></div>
+                    <div>総消費電力: <span id="total-power">0.0mW</span></div>
+                </div>
+                
+                <div id="gate-details" style="margin-bottom: 15px;">
+                    <h4 style="color: #2196F3; margin: 0 0 8px 0;">ゲート詳細</h4>
+                    <div id="selected-gate-physics">ゲートを選択してください</div>
+                </div>
+                
+                <div id="timing-analysis" style="margin-bottom: 15px;">
+                    <h4 style="color: #FF5722; margin: 0 0 8px 0;">タイミング解析</h4>
+                    <div>最大遅延: <span id="max-delay">0ns</span></div>
+                    <div>最小遅延: <span id="min-delay">0ns</span></div>
+                    <div>クリティカルパス: <span id="critical-path">未検出</span></div>
+                </div>
+                
+                <div id="signal-history-chart" style="margin-bottom: 10px;">
+                    <h4 style="color: #9C27B0; margin: 0 0 8px 0;">信号履歴</h4>
+                    <canvas id="signal-chart" width="280" height="120" style="background: rgba(255,255,255,0.1); border-radius: 4px;"></canvas>
+                </div>
+                
+                <div id="real-time-log" style="max-height: 150px; overflow-y: auto; background: rgba(255,255,255,0.1); padding: 8px; border-radius: 4px;">
+                    <h4 style="color: #607D8B; margin: 0 0 8px 0;">リアルタイムログ</h4>
+                    <div id="physics-log-content"></div>
+                </div>
+                
+            </div>
+            
+            <div class="status-bar" id="status">
+                論理回路シミュレーター Pro17 準備完了
+            </div>
+            
+        </div>
+        
+        
+        <!-- ミニマップ（初期は非表示） -->
+        <div class="minimap" id="minimap" style="display: none;">
+            <canvas id="minimap-canvas" width="200" height="150"></canvas>
+        </div>
+    </div>
+    <script src="js/script.js">
+        
+    </script>
+</body>
+</html>
