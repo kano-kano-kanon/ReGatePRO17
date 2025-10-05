@@ -26,46 +26,16 @@ Copyright (c) 2025　策定者：kano Ver.1.0
 ### 第一項　本ソフトウェアの対象の定義
 本ソフトウェアに含まれる対象はすべてのlicenseファイル・CONTACTファイルと以下のものとします。
 ```
-│  package.json
-│  README.md
-│  re_gate_pro 21.html
+│  re_gate_pro 17.html
 │
 ├─css
-│  ├─base
-│  │      layout.css
-│  │
-│  ├─canvas
-│  ├─responsive
-│  │      mobile.css
-│  │
-│  └─themes
-│          variables.css
+│      style.css
 │
 ├─favicon
-│      AC電源.svg
-│      AND.svg
-│      BUFFER.svg
-│      BUFFER8.svg
-│      COMPARATOR.svg
-│      DC.svg
 │      favicon.ico
 │      favicon.jpg
-│      NAND.svg
-│      NOR.svg
-│      NOT.svg
-│      OR.svg
-│      PUSH_BUTTON.svg
-│      RESISTOR.svg
-│      XNOR.svg
-│      XOR.svg
-│      ヒューズ.svg
-│      電圧計.svg
-│      電流元.svg
-│      電流計.svg
 │
 ├─js
-│      hdl_import.js
-│      karnaugh.js
 │      script.js
 │
 └─vhdl
@@ -192,4 +162,5 @@ Copyright (c) 2025　策定者：kano Ver.1.0
 ### 第12条
 1. 本ライセンスは、日本時間：2025年9月15日に作成されたものである。
 #### 第二項
+
 1. 第12条第一項の１において作成された本ライセンスは即日有効とする。
